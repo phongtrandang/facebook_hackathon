@@ -20,26 +20,6 @@ router.get('/:id', (req, res) => {
   });
 });
 
-router.get('/:questionId/', (req, res) => {
-  Answer.find({
-    questions: req.params.questionId
-  })
-  .populate('questions')
-  .lean()
-  .then(answer => {
-    res.json({
-      status:'success',
-      data: answer,
-    });
-  })
-  .catch(error => {
-    res.json({
-      status: 'error',
-      message: error
-    });
-  });
-});
-
 router.post('/:questionId/create', (req, res) => {
   var answer = new Answer({
     content: req.body.content,
