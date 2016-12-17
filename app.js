@@ -3,7 +3,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const passport = require('passport');
 const path = require('path');
 const app = express();
 
@@ -21,5 +20,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/v1/questions',require('./routes/api/questions'));
 app.use('/api/v1/answers', require('./routes/api/answers'));
+app.use('/api/v1/hardQuestions', require('./routes/api/hardQuestions'));
 
 module.exports = app;
