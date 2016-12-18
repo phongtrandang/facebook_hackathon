@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const questionSchema = mongoose.Schema({
   content: String,
-  category: {
+  type: {
     type: String,
     enum: ['GOSSIP', 'SOCIAL', 'DIAGNOSE', 'SOLUTION'],
     default: 'GOSSIP'

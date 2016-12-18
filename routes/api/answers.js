@@ -40,6 +40,25 @@ router.post('/:questionId/create', (req, res) => {
   });
 });
 
+router.post('/', (req, res) => {
+  var answer = new Answer({
+    content: req.body.content,
+  });
+
+  answer.save(function(err, answer) {
+    if(err){
+      return res.json({
+        status: 'error',
+        message: 'Can not create answer !'
+      });
+    }
+    res.json({
+      status: 'success',
+      data: answer
+    });
+  });
+});
+
 router.delete('/:id', function(req, res) {
   Answer.findOneAndRemove({ _id: req.params.id}, function(err) {
     if (err) {

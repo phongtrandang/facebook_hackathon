@@ -59,7 +59,8 @@ router.get('/allAnswer/:questionId/', (req, res) => {
 
 router.post('/', (req, res) => {
   var question = new Question({
-    content: req.body.content
+    content: req.body.content,
+    type: req.body.type
   });
 
   question.save(function(err, question) {
@@ -73,6 +74,23 @@ router.post('/', (req, res) => {
       status: 'success',
       data: question
     });
+  });
+});
+
+router.delete('/:id', function(req, res) {
+  Question.findOneAndRemove({ _id: req.params.id}, function(err) {
+    if (err) {
+      return res.json({
+        status: 'error',
+        data: 'Can not delete question'
+      });
+    }
+    
+    res.json({
+      status: 'success',
+      data: 'Deleted one question !'
+    });
+
   });
 });
 
