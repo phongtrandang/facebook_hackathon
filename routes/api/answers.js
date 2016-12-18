@@ -43,6 +43,7 @@ router.post('/:questionId/create', (req, res) => {
 router.post('/', (req, res) => {
   var answer = new Answer({
     content: req.body.content,
+    type: req.body.type
   });
 
   answer.save(function(err, answer) {
