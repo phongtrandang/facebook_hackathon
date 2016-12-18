@@ -49,4 +49,20 @@ router.post('/', (req, res) => {
   });
 });
 
+router.delete('/:id', function(req, res) {
+  HardQuestion.findOneAndRemove({ _id: req.params.id}, function(err) {
+    if (err) {
+      return res.json({
+        status: 'error',
+        data: 'Can not delete question'
+      });
+    }
+    
+    res.json({
+      status: 'success',
+      data: 'Deleted one question !'
+    });
+
+  });
+});
 module.exports = router;
